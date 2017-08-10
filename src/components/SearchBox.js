@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import store from '../store';
+import PropTypes from 'prop-types';
 import fetchResults from '../actions/FetchResults';
 
 class SearchBox extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
+    this.context = context;
 
     this.state = {
-      term: ''
+      term: 'ipod'
     }
   }
 
@@ -20,7 +22,7 @@ class SearchBox extends Component {
   doSubmit(e) {
     e.preventDefault();
 
-    store.dispatch(fetchResults(this.state));
+    this.context.store.dispatch(fetchResults(this.state));
   }
 
   render() {
@@ -33,6 +35,10 @@ class SearchBox extends Component {
       </div>
     );
   }
+};
+
+SearchBox.contextTypes = {
+  store: PropTypes.object
 }
 
 export default SearchBox;
