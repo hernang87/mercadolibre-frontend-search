@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBox from '../components/SearchBox';
+import Paginator from '../components/Paginator';
 import './App.css';
 
 
@@ -8,6 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchBox />
+        <Paginator />
       </div>
     );
   }

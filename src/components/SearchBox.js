@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from '../store';
-import search from '../actions/Search';
+import fetchResults from '../actions/FetchResults';
 
 class SearchBox extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class SearchBox extends Component {
   doSubmit(e) {
     e.preventDefault();
 
-    store.dispatch(search(this.state));
+    store.dispatch(fetchResults(this.state));
   }
 
   render() {
