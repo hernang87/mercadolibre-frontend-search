@@ -4,5 +4,13 @@
   "main": "index.js",
   "repository": {},
   "author": "Hernan Garchtrom",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "request-promise": "^4.2.1",
+    "striptags": "^3.0.1"
+  },
+  "devDependencies": {
+    "request": "^2.81.0"
+  }
 }
