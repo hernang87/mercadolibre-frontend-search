@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetchResults from '../actions/FetchResults';
+import './SearchBox.css';
 
 class SearchBox extends Component {
   constructor(props, context) {
@@ -27,9 +28,9 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <div className="search-box-container">
+      <div className="search-box">
         <form onSubmit={e => this.doSubmit(e) }>
-          <input type="text" value={this.state.term} onChange={e => this.updateTerm(e)}/>
+          <input placeholder="Nunca dejes de buscar" type="text" value={this.state.term} onChange={e => this.updateTerm(e)}/>
           <button type="submit">Buscar</button>
         </form>
       </div>

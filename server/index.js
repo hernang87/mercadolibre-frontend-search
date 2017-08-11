@@ -2,7 +2,10 @@ const express = require('express');
 const rp = require('request-promise');
 const utils = require('./utils.js');
 const striptags = require('striptags');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 const endpoints = {
   search: 'https://api.mercadolibre.com/sites/MLA/search?q=',
@@ -36,8 +39,6 @@ app.get('/items', (req, res) => {
       if(data.categories.indexOf(result.category_id) === -1) {
         data.categories.push(result.category_id);
       }
-
-
     }
 
     res.status(200).json(data);

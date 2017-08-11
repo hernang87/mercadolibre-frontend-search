@@ -1,17 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import showResults from './actions/ShowResults';
+import Config from './config';
 
 const initialState = {
-  results: [],
-  pageSize: 50,
-  pageCount: 0,
-  page: 0,
+  items: [],
   term: ''
 };
 
 const getResults = (action = {}) => {
-  fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${action.term}`, { method: 'GET' })
+  fetch(Config.endpoints.items + action.term, { method: 'GET' })
     .then(response => response.json())
     .then(response => store.dispatch(showResults(response)));
 };
@@ -26,15 +24,11 @@ const reducers = (state = initialState, action = {}) => {
         term: action.term
       };
     case 'SHOW_RESULTS':
-      const results = action.results;
-      const pageCount = Math.ceil(action.paging.total / state.pageSize);
-      const page = Math.ceil(action.paging.offset / state.pageSize) + 1;
+      const items = action.items;
 
       return {
         ...state,
-        results,
-        pageCount,
-        page
+        items
       };
     default:
       state.results = [];

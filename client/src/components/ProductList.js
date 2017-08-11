@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ProductListItem from './ProductListItem';
+import './ProductList.css';
 
 class ProductList extends Component {
   render() {
-    const products = this.props.list.map(product => <ProductListItem product={product} key={product.id} />);
+    const products = this.props.items.map(product => <ProductListItem product={product} key={product.id} />);
     return (
-      <div className="product-list-container">
-        <ul>{products}</ul>
+      <div className="product-list">
+        <ul className="product-list__items">{products}</ul>
       </div>
     );
   }
@@ -15,7 +16,7 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.results
+    items: state.items
   }
 }
 
