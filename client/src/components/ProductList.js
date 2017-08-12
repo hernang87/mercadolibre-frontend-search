@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ProductListItem from './ProductListItem';
-import './ProductList.css';
+import '../styles/ProductList.css';
 
 class ProductList extends Component {
   render() {

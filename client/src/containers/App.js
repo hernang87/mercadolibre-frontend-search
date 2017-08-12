@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchBox from '../components/SearchBox';
 import ProductList from '../components/ProductList';
-import './App.css';
+import '../styles/App.css';
 
 
 class App extends Component {
