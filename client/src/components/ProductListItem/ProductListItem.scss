@@ -1,0 +1,13 @@
+.product-list-item {
+    display: flex;
+  
+    &--free_shipping {
+      .product-list-item__shipping-icon {
+        display: inline;
+      }
+    }
+  
+    &__shipping-icon {
+      display: none;
+    }
+  }

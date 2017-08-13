@@ -17,7 +17,7 @@ const author = {
   lastname: 'Garchtrom'
 };
 
-app.get('/items', (req, res) => {
+app.get('/api/items', (req, res) => {
   let query = req.query || '';
   let data = {
     author,
@@ -47,7 +47,7 @@ app.get('/items', (req, res) => {
   });
 });
 
-app.get('/items/:id', (req, res) => {
+app.get('/api/items/:id', (req, res) => {
   let id = req.params.id;
 
   let data = {

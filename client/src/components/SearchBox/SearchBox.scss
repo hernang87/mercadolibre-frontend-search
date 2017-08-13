@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/forms';
+
+.search-box {
+  background: $gorse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @include rem(padding, 10px 0);
+
+  &__logo {
+    @include rem(margin-right, 26px);
+  }
+
+  &__form {
+    width: 60%;
+  }
+
+  &__form__input {
+    width: 85%;
+  }
+}
