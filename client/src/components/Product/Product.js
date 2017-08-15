@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-const Product = () => {
-    <div></div>
+class Product extends Component {
+  render() {
+    return (
+      <div className="product">
+
+      </div>
+    )
+  }
 }
 
 export default Product;
