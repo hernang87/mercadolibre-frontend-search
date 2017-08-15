@@ -54,6 +54,14 @@
 
   &__title {
     margin: 0;
+    color: $mineshaft;
+    text-decoration: none;
+    transition: color .2s ease-in-out;
+
+    &:hover {
+      color: $black;
+      text-decoration: underline;
+    }
 
     @include rem(font-size, $text-medium);
   }

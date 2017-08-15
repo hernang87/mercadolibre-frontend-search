@@ -6,7 +6,7 @@ import './ProductList.css';
 
 class ProductList extends Component {
   componentWillMount() {
-    const url = 'http://localhost:4500/api/items?search=' + this.props.search;
+    let url = 'http://localhost:4500/api/items?search=' + this.props.search;
 
     this.setState({
       products: [],

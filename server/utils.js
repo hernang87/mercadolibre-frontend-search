@@ -18,6 +18,7 @@ const utils = {
 
     product.condition = data.condition;
     product.sold_quantity = data.sold_quantity;
+    product.category = data.attributes.map(e => e.value_name);
 
     return product;
   }
