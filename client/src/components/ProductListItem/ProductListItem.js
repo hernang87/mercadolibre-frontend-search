@@ -27,6 +27,10 @@ class ProductListItem extends Component {
 
           <Link className="product-list-item__title" to={this.url()}>{product.title}</Link>
         </div>
+
+        <p className="product-list-item__location">
+          {product.location}
+        </p>
       </div>
     );
   }

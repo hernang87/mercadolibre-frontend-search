@@ -31,12 +31,6 @@
     }
   }
 
-  &__data {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   &__image {
     @include rem(margin-right, $margin-small);
     img {

@@ -6,6 +6,7 @@ const utils = {
       picture: data.thumbnail,
       free_shipping: data.shipping.free_shipping,
       condition: data.condition,
+      location: data.address.state_name,
       price: {
         currency: data.currency_id,
         amount: data.price
