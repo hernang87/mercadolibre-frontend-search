@@ -9,9 +9,8 @@ import SearchIcon from '../../images/icon-search.png';
 
 class SearchBox extends Component {
   componentWillMount() {
-    this.setState({
-      term: this.props.search || ''
-    })
+    let term = this.props.search || '';
+    this.setState({ term })
   }
 
   updateTerm(e) {
@@ -29,7 +28,7 @@ class SearchBox extends Component {
   render() {
     return (
       <div className="search-box">
-        {/* <img className="search-box__logo" src={LogoML} alt="MercadoLibre.com" /> */}
+        <img className="search-box__logo" src={LogoML} alt="MercadoLibre.com" />
         <form className="search-box__form form" onSubmit={e => this.doSubmit(e) }>
           <input className="search-box__form__input form__input form__input--inline" placeholder="Nunca dejes de buscar" type="text" value={this.state.term} onChange={e => this.updateTerm(e)}/>
           <button className="search-box__form__inline-button form__button form__button--inline" type="submit"><img src={SearchIcon} alt="Search" /></button>

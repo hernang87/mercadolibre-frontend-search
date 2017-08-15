@@ -1,6 +1,13 @@
+@import '../../styles/variables';
+
 .product-list {
-    &__items {
-      padding: 0;
-      list-style: none;
-    }
+  background: $white;
+  width: 80%;
+  display: inline-block;
+  text-align: left;
+
+  &__items {
+    padding: 0;
+    list-style: none;
   }
+}

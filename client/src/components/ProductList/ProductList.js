@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { addUrlProps, UrlQueryParamTypes } from 'react-url-query';
 import ProductListItem from '../ProductListItem/ProductListItem';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import './ProductList.css';
 
 class ProductList extends Component {
   componentWillMount() {
-    const url = 'http://localhost:4500/api/items?q=' + this.props.search;
+    const url = 'http://localhost:4500/api/items?search=' + this.props.search;
 
     this.setState({
-      products: []
+      products: [],
+      categories: []
     });
 
     fetch(url)
       .then(response => response.json())
-      .then(response => this.setState({ products: response.items }));
+      .then(response => this.setState({ products: response.items, categories: response.categories }))
+      .catch(err => console.log(err));
   }
 
   render() {
-    if(this.state.products.length === 0) {
+    if(!this.state.products || this.state.products.length === 0) {
       return <div></div>
     }
 
@@ -25,6 +28,7 @@ class ProductList extends Component {
 
     return (
       <div className="product-list">
+        <Breadcrumb path={this.state.categories} />
         <ul className="product-list__items">{products}</ul>
       </div>
     );

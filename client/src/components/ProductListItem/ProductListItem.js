@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IconShipping from '../../images/icon-shipping.png'
 import './ProductListItem.css';
 
 class ProductListItem extends Component {
@@ -14,7 +15,9 @@ class ProductListItem extends Component {
         <div className="product-list-item__data">
           <p className="product-list-item__price">
             $ {product.price.amount}
-            <span className="product-list-item__shipping-icon">F</span>
+            <div className="product-list-item__shipping-icon">
+              <img src={IconShipping} />
+            </div>
           </p>
           <p className="product-list-item__title">{product.title}</p>
         </div>
