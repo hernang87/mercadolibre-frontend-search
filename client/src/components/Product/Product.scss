@@ -50,7 +50,13 @@
     display: block;
     text-align: center;
 
+    transition: opacity .25s ease-in-out;
+
     @include rem(padding, 12px 0);
+
+    &:hover {
+      opacity: .8;
+    }
   }
 
   &__item__description {

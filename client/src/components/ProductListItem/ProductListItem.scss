@@ -2,7 +2,8 @@
 @import '../../styles/mixins';
 
 .product-list-item {
-  display: flex;
+  display: flex;  
+  // justify-content: space-between;
   color: $mineshaft;
   border-bottom: 1px solid $gallery;
   position: relative;
@@ -29,7 +30,7 @@
       left: 10px;
       @include rem(width, 20px);
     }
-  }
+  }  
 
   &__image {
     @include rem(margin-right, $margin-small);
@@ -58,5 +59,12 @@
     }
 
     @include rem(font-size, $text-medium);
+  }
+
+  &__location {
+    font-size: 12px;
+    margin-left: auto;
+    @include rem(padding-left, 50px);
+    @include rem(width, 100px);
   }
 }

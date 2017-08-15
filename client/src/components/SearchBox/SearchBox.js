@@ -20,9 +20,16 @@ class SearchBox extends Component {
   }
 
   doSubmit(e) {
-    e.preventDefault();
+    if(e) e.preventDefault();
+        
+    this.context.router.history.push({
+      pathname: '/items',
+      search: `?search=${this.state.term}`               
+    });    
+  }
 
-    this.context.router.history.push(`/items?search=${this.state.term}`);
+  _handleKeyPress(e) {
+    if(e.key === 'Enter') this.doSubmit();
   }
 
   render() {
@@ -30,7 +37,13 @@ class SearchBox extends Component {
       <div className="search-box">
         <img className="search-box__logo" src={LogoML} alt="MercadoLibre.com" />
         <form className="search-box__form form" onSubmit={e => this.doSubmit(e) }>
-          <input className="search-box__form__input form__input form__input--inline" placeholder="Nunca dejes de buscar" type="text" value={this.state.term} onChange={e => this.updateTerm(e)}/>
+          <input 
+            className="search-box__form__input form__input form__input--inline" 
+            placeholder="Nunca dejes de buscar" 
+            type="text" 
+            value={this.state.term} 
+            onKeyPress={ e => this._handleKeyPress(e)} 
+            onChange={e => this.updateTerm(e)} />
           <button className="search-box__form__inline-button form__button form__button--inline" type="submit"><img src={SearchIcon} alt="Search" /></button>
         </form>
       </div>
@@ -39,7 +52,7 @@ class SearchBox extends Component {
 };
 
 SearchBox.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object.isRequired
 }
 
 const urlPropsQueryConfig = {

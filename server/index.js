@@ -18,10 +18,6 @@ const author = {
   lastname: 'Garchtrom'
 };
 
-// rp({
-
-// })
-
 app.get('/api/items', (req, res) => {
   let query = req.query.search || '';
   let data = {
@@ -43,16 +39,22 @@ app.get('/api/items', (req, res) => {
     }
 
     let categories = response.available_filters.filter(f => f.id === 'category')[0];
-    let orderedCategories = categories.values.sort((a,b) => b.results - a.results);
-
-    return rp({
-      uri: endpoints.categories + orderedCategories[0].id,
-      json: true
-    })
-  }).then(response => {
-    response.path_from_root.map(v => data.categories.push(v.name));
-    res.status(200).json(data);
+       
+    if(categories) {      
+      let orderedCategories = categories.values.sort((a,b) => b.results - a.results);
+      
+      rp({
+        uri: endpoints.categories + orderedCategories[0].id,
+        json: true
+      }).then(response => {
+        response.path_from_root.map(v => data.categories.push(v.name));
+        res.status(200).json(data);
+      });
+    } else {
+      res.status(200).json(data);
+    }  
   }).catch(err => {
+    console.log(err);
     res.status(500).json(err);
   });
 });
@@ -70,7 +72,7 @@ app.get('/api/items/:id', (req, res) => {
     json: true
   }).then(response => {
     data.item = utils.getCompleteProductFromMLResponse(response);
-
+    
     return rp({
       uri: endpoints.items + id + '/description',
       json: true
@@ -79,6 +81,7 @@ app.get('/api/items/:id', (req, res) => {
     data.item.description = striptags(response.text);
     res.status(200).send(data);
   }).catch(err => {
+    console.log(err);
     res.status(500).json(err);
   });
 });

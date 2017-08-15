@@ -6,17 +6,17 @@ import './ProductList.css';
 
 class ProductList extends Component {
   componentWillMount() {
-    let url = 'http://localhost:4500/api/items?search=' + this.props.search;
+    
 
     this.setState({
       products: [],
       categories: []
     });
+    this.fetchData()
+  }
 
-    fetch(url)
-      .then(response => response.json())
-      .then(response => this.setState({ products: response.items, categories: response.categories }))
-      .catch(err => console.log(err));
+  componentWillReceiveProps() {
+    this.fetchData();
   }
 
   render() {
@@ -32,6 +32,14 @@ class ProductList extends Component {
         <div className="product-list__items">{products}</div>
       </div>
     );
+  }
+
+  fetchData() {
+    let url = 'http://localhost:4500/api/items?search=' + this.props.search;
+    fetch(url)
+      .then(response => response.json())
+      .then(response => this.setState({ products: response.items, categories: response.categories }))
+      .catch(err => console.log(err));
   }
 }
 
