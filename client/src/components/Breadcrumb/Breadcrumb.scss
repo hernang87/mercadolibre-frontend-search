@@ -1,5 +1,35 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .breadcrumb {
   background: $gallery;
+  font-family: Helvetica;
+
+  @include rem(font-size, $text-small);
+  @include rem(padding, 16px 0);
+
+  &__item {
+    &__link {
+      color: $dusty-gray;
+      text-decoration: none;
+      transition: .2s color ease-in-out;
+
+      &:hover {
+        color: $mineshaft;
+        text-decoration: underline;
+      }
+    }
+
+    &:last-child {
+      .breadcrumb__item__icon {
+        display: none;
+      }
+    }
+  }
+
+  &__item__icon {
+    color: $dusty-gray;
+    font-size: 10px;
+    @include rem(padding, 0 5px);
+  }
 }

@@ -1,13 +1,17 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .product-list {
-  background: $white;
+
   width: 80%;
   display: inline-block;
   text-align: left;
 
+  @include rem(padding-bottom, 48px);
+
   &__items {
-    padding: 0;
-    list-style: none;
+    background: $white;
+    border-radius: 4px;
+    overflow: hidden;
   }
 }

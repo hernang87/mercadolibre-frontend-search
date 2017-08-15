@@ -1,13 +1,60 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .product-list-item {
-    display: flex;
-  
-    &--free_shipping {
-      .product-list-item__shipping-icon {
-        display: inline;
-      }
-    }
-  
-    &__shipping-icon {
-      display: none;
+  display: flex;
+  color: $mineshaft;
+  border-bottom: 1px solid $gallery;
+  position: relative;
+
+  &:last-child {
+    border: 0;
+  }
+
+  @include rem(margin, $margin-small $margin-small 0);
+  @include rem(padding-bottom, $margin-small);
+
+  &--free_shipping {
+    .product-list-item__shipping-icon {
+      display: inline;
     }
   }
+
+  &__shipping-icon {
+    display: none;
+
+    img {
+      position: relative;
+      top: 2px;
+      left: 10px;
+      @include rem(width, 20px);
+    }
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__image {
+    @include rem(margin-right, $margin-small);
+    img {
+      border-radius: 4px;
+
+      @include rem(width, 180px);
+      @include rem(height, 180px);
+    }
+  }
+
+  &__price {
+    @include rem(font-size, $text-large);
+    @include rem(margin-bottom, $margin-large);
+  }
+
+  &__title {
+    margin: 0;
+
+    @include rem(font-size, $text-medium);
+  }
+}

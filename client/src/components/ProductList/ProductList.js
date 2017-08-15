@@ -29,7 +29,7 @@ class ProductList extends Component {
     return (
       <div className="product-list">
         <Breadcrumb path={this.state.categories} />
-        <ul className="product-list__items">{products}</ul>
+        <div className="product-list__items">{products}</div>
       </div>
     );
   }
