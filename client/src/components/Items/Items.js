@@ -5,12 +5,12 @@ import Product from '../Product/Product';
 
 class Items extends Component {
     render() {
-        return(
-            <Switch>
-                <Route exact path="/items" component={ProductList} />
-                <Route path="/items/:id" component={Product} />
-            </Switch>
-        );
+      return(
+        <Switch>
+          <Route exact path="/items" component={ProductList} />
+          <Route path="/items/:id" component={Product} />
+        </Switch>
+      );
     }
 }
 

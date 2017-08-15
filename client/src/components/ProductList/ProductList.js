@@ -9,35 +9,31 @@ const urlPropsQueryConfig = {
 }
 
 class ProductList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { 
-            products: [] 
-        }
-    }    
+  componentWillMount() {
+    const url = 'http://localhost:4500/api/items?q=' + this.props.search;
 
-    componentWillMount() {
-        const url = 'http://localhost:4500/api/items?q=' + this.props.search;
-        fetch(url)
-            .then(response => response.json())
-            .then(response => this.setState({ products: response.items }));
+    this.setState({
+      products: []
+    });
+
+    fetch(url)
+      .then(response => response.json())
+      .then(response => this.setState({ products: response.items }));
+  }
+
+  render() {
+    if(this.state.products.length === 0) {
+      return <div></div>
     }
-    
-    render() {                
-        if(this.state.products.length === 0) {
-            return (
-                <div className="loading">Cargando productos...</div>
-            );
-        }
 
-        const products = this.state.products.map(product => <ProductListItem product={product} key={product.id} />);
+    const products = this.state.products.map(product => <ProductListItem product={product} key={product.id} />);
 
-        return (      
-            <div className="product-list">
-                <ul className="product-list__items">{products}</ul>
-            </div>
-        );
-    }
+    return (
+      <div className="product-list">
+        <ul className="product-list__items">{products}</ul>
+      </div>
+    );
+  }
 }
 
 export default addUrlProps({ urlPropsQueryConfig })(ProductList);

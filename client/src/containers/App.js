@@ -7,14 +7,12 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-		<div className="App">
-			<SearchBox />
-			<BrowserRouter>
-				<Switch>			
-					<Route path='/items' component={Items} />
-				</Switch>
-			</BrowserRouter>
-	  	</div>
+      <BrowserRouter>
+        <div className="App">
+          <SearchBox />
+          <Route path='/items' component={Items} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
