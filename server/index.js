@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 
 const endpoints = {
-  search: 'https://api.mercadolibre.com/sites/MLA/search?q=',
-  items: 'https://api.mercadolibre.com/items/'
+  search: 'https://api.mercadolibre.com/sites/MLA/search?limit=4&q=',
+  items: 'https://api.mercadolibre.com/items/',
+  categories: 'https://api.mercadolibre.com/categories/'
 };
 
 const author = {
@@ -17,8 +18,12 @@ const author = {
   lastname: 'Garchtrom'
 };
 
+// rp({
+
+// })
+
 app.get('/api/items', (req, res) => {
-  let query = req.query || '';
+  let query = req.query.search || '';
   let data = {
     author,
     categories: [],
@@ -35,12 +40,17 @@ app.get('/api/items', (req, res) => {
       let item = utils.getProductFromMLResponse(result);
 
       data.items.push(item);
-
-      if(data.categories.indexOf(result.category_id) === -1) {
-        data.categories.push(result.category_id);
-      }
     }
 
+    let categories = response.available_filters.filter(f => f.id === 'category')[0];
+    let orderedCategories = categories.values.sort((a,b) => b.results - a.results);
+
+    return rp({
+      uri: endpoints.categories + orderedCategories[0].id,
+      json: true
+    })
+  }).then(response => {
+    response.path_from_root.map(v => data.categories.push(v.name));
     res.status(200).json(data);
   }).catch(err => {
     res.status(500).json(err);
