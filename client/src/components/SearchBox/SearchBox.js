@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { addUrlProps, UrlQueryParamTypes } from 'react-url-query';
 import './SearchBox.css';
 import LogoML from '../../images/logo-ml.png';
 import SearchIcon from '../../images/icon-search.png';
 
+
 class SearchBox extends Component {
   componentWillMount() {
     this.setState({
-      term: ''
+      term: this.props.search || ''
     })
   }
 
@@ -41,4 +43,8 @@ SearchBox.contextTypes = {
   router: PropTypes.object
 }
 
-export default withRouter(SearchBox);
+const urlPropsQueryConfig = {
+  search: { type: UrlQueryParamTypes.string }
+}
+
+export default addUrlProps({ urlPropsQueryConfig })(withRouter(SearchBox));

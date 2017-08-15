@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { addUrlProps, UrlQueryParamTypes } from 'react-url-query';
 import ProductListItem from '../ProductListItem/ProductListItem';
-
 import './ProductList.css';
-
-const urlPropsQueryConfig = {
-  search: { type: UrlQueryParamTypes.string }
-}
 
 class ProductList extends Component {
   componentWillMount() {
@@ -34,6 +29,10 @@ class ProductList extends Component {
       </div>
     );
   }
+}
+
+const urlPropsQueryConfig = {
+  search: { type: UrlQueryParamTypes.string }
 }
 
 export default addUrlProps({ urlPropsQueryConfig })(ProductList);
